@@ -1,6 +1,3 @@
-// interface Todo {
-//   id: number; title: string; done: boolean;
-// }
 var todoItems;
 // api
 function fetchTodoItems() {
