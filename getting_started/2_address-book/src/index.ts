@@ -1,3 +1,6 @@
+// 이하 요소를 어떻게 해석하나?
+// key:value로 보아햐 하나?
+// key는 phone인데 string 타입이고 value는 num인데 number type?
 interface PhoneNumberDictionary {
   [phone: string]: {
     num: number;
@@ -10,11 +13,17 @@ interface Contact {
   phones: PhoneNumberDictionary;
 }
 
+enum PhoneType{
+  Home = 'home',
+  Studio = 'studio',
+  Office = 'office'
+}
+
 // api
 // TODO: 아래 함수의 반환 타입을 지정해보세요.
-function fetchContacts() {
+function fetchContacts(): Promise<Contact[]> {
   // TODO: 아래 변수의 타입을 지정해보세요.
-  const contacts = [
+  const contacts: Contact[] = [
     {
       name: 'Tony',
       address: 'Malibu',
@@ -50,49 +59,49 @@ function fetchContacts() {
     },
   ];
   return new Promise(resolve => {
-    setTimeout(() => resolve(contacts), 2000);
+    setTimeout(() => resolve(contacts), 2000);   
   });
 }
 
 // main
 class AddressBook {
   // TODO: 아래 변수의 타입을 지정해보세요.
-  contacts = [];
+  public contacts: Contact[] = [];
 
   constructor() {
     this.fetchData();
   }
 
-  fetchData() {
+  fetchData(): void {
     fetchContacts().then(response => {
       this.contacts = response;
     });
   }
 
   /* TODO: 아래 함수들의 파라미터 타입과 반환 타입을 지정해보세요 */
-  findContactByName(name) {
+  findContactByName(name: string): Contact[] {
     return this.contacts.filter(contact => contact.name === name);
   }
 
-  findContactByAddress(address) {
+  findContactByAddress(address: string): Contact[] {
     return this.contacts.filter(contact => contact.address === address);
   }
 
-  findContactByPhone(phoneNumber, phoneType: string) {
+  findContactByPhone(phoneNumber: number, phoneType: string): Contact[] {
     return this.contacts.filter(
       contact => contact.phones[phoneType].num === phoneNumber
     );
   }
 
-  addContact(contact) {
+  addContact(contact: Contact): void {
     this.contacts.push(contact);
   }
 
-  displayListByName() {
+  displayListByName(): string[] {
     return this.contacts.map(contact => contact.name);
   }
 
-  displayListByAddress() {
+  displayListByAddress(): string[] {
     return this.contacts.map(contact => contact.address);
   }
   /* ------------------------------------------------ */
