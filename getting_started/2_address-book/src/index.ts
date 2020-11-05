@@ -1,6 +1,3 @@
-// 이하 요소를 어떻게 해석하나?
-// key:value로 보아햐 하나?
-// key는 phone인데 string 타입이고 value는 num인데 number type?
 interface PhoneNumberDictionary {
   [phone: string]: {
     num: number;
@@ -66,7 +63,7 @@ function fetchContacts(): Promise<Contact[]> {
 // main
 class AddressBook {
   // TODO: 아래 변수의 타입을 지정해보세요.
-  public contacts: Contact[] = [];
+  contacts: Contact[] = [];
 
   constructor() {
     this.fetchData();
@@ -87,7 +84,7 @@ class AddressBook {
     return this.contacts.filter(contact => contact.address === address);
   }
 
-  findContactByPhone(phoneNumber: number, phoneType: string): Contact[] {
+  findContactByPhone(phoneNumber: number, phoneType: PhoneType): Contact[] {
     return this.contacts.filter(
       contact => contact.phones[phoneType].num === phoneNumber
     );
@@ -107,4 +104,7 @@ class AddressBook {
   /* ------------------------------------------------ */
 }
 
-new AddressBook();
+const addressbook = new AddressBook();
+const showAddress: Contact[] = addressbook.findContactByAddress('Malibu');
+setTimeout(()=> console.log(showAddress), 0)
+
