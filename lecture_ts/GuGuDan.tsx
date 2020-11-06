@@ -22,6 +22,7 @@ const GuGuDan = () => {
     if (parseInt(InputValue) === AnswerNumber) {
       setShowAnswer("정답")
       setInputValue("")
+      // input elemnet가 존재한다면
       if (input) {
         input.focus();
       }
