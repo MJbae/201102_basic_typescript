@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { TryProps } from './types';
 
-const Try: React.FunctionComponent<TryProps> = ({ tryInfo }) => {
+const Try: React.FunctionComponent<TryProps> = (props) => {
   return (
     <li>
-      <div>{tryInfo.try}</div>
-      <div>{tryInfo.result}</div>
+      <div>{props.tryInfo.try}</div>
+      <div>{props.tryInfo.result}</div>
     </li>
   );
 };
